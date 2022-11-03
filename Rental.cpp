@@ -215,38 +215,6 @@ void datatgl(){
   order["tenggat"] = konvertINT(selisih);
 }
 
-/*void datatgl(){
-  //ambil selisih waktu
-  string hariPinjam = order["tglPeminjaman"];
-  string hariKembali = order["tglKembali"];
-  string temp1, temp2;
-  int Pinjam, Kembali;
-  for (int i = 0; i < 2; ++i)
-  {
-    if (hariPinjam[0] == '0')
-    {
-      temp1 = hariPinjam[1];
-      break;
-    }
-    temp1 += hariPinjam[i];
-  }
-  Pinjam = konvertSTR(temp1);
-
-  for (int i = 0; i < 2; ++i)
-  {
-    if (hariPinjam[0] == '0')
-    {
-      temp2 = hariKembali[1];
-      break;
-    }
-    temp2 += hariKembali[i];
-  }
-  Kembali = konvertSTR(temp2);
-
-  selisih = Kembali - Pinjam;
-  order["tenggat"] = konvertINT(selisih);
-}*/
-
 void money(){
   stringstream ss;
     dotted::imbue(ss);
@@ -268,11 +236,11 @@ void costumer(){
   if(client["name"].empty()){
     cout << "=====================================================" << endl;
     cout << "Name Costumer : ";
-    cin >> client["name"];
+    getline(cin, client["name"]);
     cout << "Address Costumer : ";
-    cin >> client["address"];
+    getline(cin, client["address"]);
     cout << "Telp Costumer : ";
-    cin >> client["telp"];
+    getline(cin, client["telp"]);
     cout << "=====================================================" << endl;
   }else{
     cout << "=====================================================" << endl;
@@ -374,6 +342,12 @@ void cetak(){
 void proses(){
   cout << "Silahkan pilih tipe kendaraan yang tersedia : ";
   cin >> merek;
+  if (merek > 5)
+  {
+    cout << "Error//harap isi dengan benar!!" << endl;\
+    system("pause");
+    restart();
+  }
   choose();
   cout << endl << "Tanggal Peminjaman (dd/mm/yyyy) : ";
   cin >> order["tglPeminjaman"];
